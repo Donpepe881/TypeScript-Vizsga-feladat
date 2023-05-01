@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Natív Typescriptről fordított JS kód teszt</title>
+    <!-- Bootstrap CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <!--Ide hívja meg a tesztfilet-->
+    <script src="TsModuleNativ_teszt.js"></script>
+    <script>
+        //Ide illessze be a lefordított typescript kódot
+
+        // 1. feladat
+        function Rng(alsoHatar, felsoHatar) {
+            return Math.round(Math.random() * (felsoHatar - alsoHatar) + alsoHatar);
+        }
+        ;
+        var randomSzam = Rng(1, 30);
+        document.write(randomSzam + "");
+
+
+        // 2. feladat
+        function TombGenerator(meret, alsoHatar, felsoHatar) {
+            var generaltSzamok = [];
+            for (var i = 0; i < meret; i++) {
+                generaltSzamok.push(Math.round(Math.random() * (felsoHatar - alsoHatar) + alsoHatar));
+            }
+            return generaltSzamok;
+        }
+        var generaltTomb = TombGenerator(10, 1, 30);
+        document.write("<hr>" + generaltTomb);
+
+        // 3. feladat
+        function Duplazo(vizsgaltTomb) {
+            var megduplazottTomb = [];
+            for (var i = 0; i < vizsgaltTomb.length; i++) {
+                megduplazottTomb.push(2 * vizsgaltTomb[i]);
+            }
+            return megduplazottTomb;
+        }
+        var duplazottTomb = Duplazo(generaltTomb);
+        document.write("<hr>" + duplazottTomb);
+
+
+        // 4. feladat
+        function PrimekSzama(vizsgaltTomb) {
+            var oszto = 0;
+            var primSzamokMennyisege = [];
+            for (var i = 0; i < vizsgaltTomb.length; i++) {
+                for (var j = 1; j < 30; j++) {
+                    if (vizsgaltTomb[i] % j == 0) {
+                        oszto++;
+                    }
+                }
+                if (oszto == 2) {
+                    primSzamokMennyisege.push(vizsgaltTomb[i]);
+                }
+            }
+            return primSzamokMennyisege;
+        }
+        var primSzamok = PrimekSzama(generaltTomb);
+        document.write("<hr>" + primSzamok);
+
+        // 5. feladat
+        function EgyediElemek(vizsgaltTomb) {
+            var egyediTomb = [];
+            for (var i = 0; i < vizsgaltTomb.length; i++) {
+                var szerepelE = false;
+                for (var j = 0; j < egyediTomb.length; j++) {
+                    if (vizsgaltTomb[i] == egyediTomb[j]) {
+                        szerepelE = true;
+                    }
+                }
+                if (szerepelE == false) {
+                    egyediTomb.push(vizsgaltTomb[i]);
+                }
+            }
+            return egyediTomb;
+        }
+        var egyediSzamok = EgyediElemek(generaltTomb);
+        document.write("<hr>" + egyediSzamok);
+
+        //A lefordított és beillesztett typescript kódok után itt hívja meg a teszteseteket tartalmazó kódot!
+
+
+
+    </script>
+    <script>
+        function TesztEsetek() {
+            document.write("<table class=\"table table-info table-sm\">");
+            document.write("<tr><th>Teszt elenevezése</th><th>Bemeneti paraméterek</th><th>Eredmény</th><th>Sikerült/Nem sikerült</th>");
+            F1teszt(1, 30);
+            F1teszt(20, 50);
+            F1teszt(30, 100);
+            F2teszt1(10, 1, 30);
+            F2teszt1(20, 20, 50);
+            F2teszt1(5, 30, 100);
+            F2teszt2(10, 1, 30);
+            F2teszt2(20, 20, 50);
+            F2teszt2(5, 30, 100);
+            F3teszt([3, 10, 5], [6, 20, 10]);
+            F3teszt([1, 2, 3], [2, 4, 6]);
+            F3teszt([-1, -5, 5], [-2, -10, 10]);
+            F4teszt([3, 7, 5], 3);
+            F4teszt([23, 12, 14], 1);
+            F4teszt([32, 64, 12], 0);
+            F5teszt([3, 7, 7], [3, 7]);
+            F5teszt([5, 5, 5], [5]);
+            F5teszt([3, 3, 5, 5, 7, 7], [3, 5, 7]);
+            document.write("</table>");
+        }
+    </script>
+</head>
+
+<body>
+
+
+
+</body>
+</head>
